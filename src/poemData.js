@@ -2,7 +2,7 @@
 
 class PoemData {
   static get DATA_FILE() {
-    return "/data.json";
+    return (window.location.pathname || "/") + "data.json";
   }
 
   static load() {
