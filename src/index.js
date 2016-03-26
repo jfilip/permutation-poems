@@ -9,16 +9,20 @@ import { Writer } from "./writer";
 
 window.addEventListener("load", function() {
   PoemData.load().then(
-    (r) => r.json()
-  ).then(
-    (j) => console.log(j)
+    data => data.poems.reduce(
+      function(sequence, poem) {
+        return sequence.then(
+          () => {
+            let p = new Permutations({ line: poem });
+            let w = new Writer({ lines: p.genPermutations() });
+            return w.writeLines()
+          }
+        ).then(
+          () => Writer.clearLines()
+        );
+      }, Promise.resolve())
   ).catch(
-    (e) => console.error("Error fetching data.json", e)
+    e => console.error(e)
   );
-
-  let p = new Permutations("NO POET'S DON'T OWN WORDS");
-  let w = new Writer(p.genPermutations());
-  w.writeLine();
-  Writer.clearLines();
 });
 

@@ -3,23 +3,32 @@
 var Typewriter = require("../node_modules/typewriter.js/src/typewriter");
 
 class Writer {
-  constructor(lines) {
-    this.lines = lines;
+  constructor(args) {
+    this.lines = args.lines || [];
   }
 
   static clearLines() {
-    Array.prototype.forEach.call(
-      document.querySelectorAll(".poem-line"),
-      (l) => document.body.removeChild(l)
+    return new Promise(
+      resolve => setTimeout(function() {
+        Array.prototype.forEach.call(
+          document.querySelectorAll(".poem-line"),
+          l => document.body.removeChild(l)
+        );
+        resolve();
+      }, 8000)
     );
   }
 
-  writeLine(lineNum=0) {
-    if(lineNum === this.lines.length - 1) {
-      return;
-    }
-    this.createContainer(lineNum);
-    this.typeWriteLine(this.currentLine(lineNum), lineNum);
+  writeLines() {
+    var self = this;
+
+    return this.lines.reduce(function(sequence, line, lineNum) {
+      return sequence.then(
+        () => self.createContainer(lineNum)
+      ).then(
+        () => self.typeWriteLine(line, lineNum)
+      );
+    }, Promise.resolve());
   }
 
   createContainer(lineNum) {
@@ -35,10 +44,11 @@ class Writer {
   }
 
   typeWriteLine(line, lineNum) {
-    let tw = new Typewriter(this.lineId(lineNum, true), { text: line, interval: 5 });
+    this.createContainer(lineNum);
+    let tw = new Typewriter(this.lineId(lineNum, true), { text: line, interval: 20 });
     var self = this;
     setTimeout(() => self.placeholder().scrollIntoView(), 5);
-    tw.type(() => this.writeLine(++lineNum));
+    return new Promise(resolve => tw.type(() => resolve()));
   }
 
   lineId(lineNum, selector=false) {

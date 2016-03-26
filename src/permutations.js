@@ -1,9 +1,10 @@
+"use strict";
 
 var itertools = require("itertools");
 
 class Permutations {
-  constructor(line) {
-    this.line = line;
+  constructor(args) {
+    this.line = args.line || "";
   }
 
   test() {
@@ -12,7 +13,7 @@ class Permutations {
 
   genPermutations() {
     let permutations = itertools.permutationsSync(this.tokens(), this.tokens().length);
-    return permutations.map((p) => p.reverse().join(" ")).reverse();
+    return permutations.map(p => p.reverse().join(" ")).reverse();
   }
 
   tokens() {
