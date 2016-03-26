@@ -7,10 +7,6 @@ class Permutations {
     this.line = args.line || "";
   }
 
-  test() {
-    console.log("Permutations.test", this.line);
-  }
-
   genPermutations() {
     let permutations = itertools.permutationsSync(this.tokens(), this.tokens().length);
     return permutations.map(p => p.reverse().join(" ")).reverse();

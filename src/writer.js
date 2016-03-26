@@ -21,7 +21,6 @@ class Writer {
 
   writeLines() {
     var self = this;
-
     return this.lines.reduce(function(sequence, line, lineNum) {
       return sequence.then(
         () => self.createContainer(lineNum)
@@ -35,7 +34,6 @@ class Writer {
     let d = document.createElement("div");
     d.id = this.lineId(lineNum);
     d.className = "poem-line";
-    d.innerHTML = "";
     document.body.insertBefore(d, this.placeholder());
   }
 
@@ -44,19 +42,13 @@ class Writer {
   }
 
   typeWriteLine(line, lineNum) {
-    this.createContainer(lineNum);
     let tw = new Typewriter(this.lineId(lineNum, true), { text: line, interval: 20 });
-    var self = this;
-    setTimeout(() => self.placeholder().scrollIntoView(), 5);
+    this.placeholder().scrollIntoView()
     return new Promise(resolve => tw.type(() => resolve()));
   }
 
   lineId(lineNum, selector=false) {
     return (selector ? "#" : "") + "line-" + (lineNum + 1);
-  }
-
-  currentLine(lineNum) {
-    return this.lines[lineNum];
   }
 }
 
