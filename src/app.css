@@ -1,0 +1,14 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto+Mono:500);
+
+body {
+  background: #000;
+  color: #fff;
+  font-family: "Roboto Mono";
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.1rem;
+  margin: 0;
+  padding: 1rem;
+}
+
+#placeholder { height: 1rem; }
