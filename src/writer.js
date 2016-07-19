@@ -41,9 +41,13 @@ class Writer {
     return document.querySelector("#placeholder");
   }
 
+  scrollToNewLine() {
+    document.body.scrollTop = this.placeholder().offsetTop;
+  }
+
   typeWriteLine(line, lineNum) {
     let tw = new Typewriter(this.lineId(lineNum, true), { text: line, interval: 20 });
-    this.placeholder().scrollIntoView()
+    this.scrollToNewLine();
     return new Promise(resolve => tw.type(() => resolve()));
   }
 
