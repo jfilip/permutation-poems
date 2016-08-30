@@ -50,11 +50,11 @@ class Writer {
   }
 
   isColumnMaxHeight(column) {
-    return column.clientHeight + this.poemLineHeight() >= window.innerHeight;
+    return column.clientHeight + this.poemLineHeight() + 20 >= window.innerHeight;
   }
 
   poemLineHeight() {
-    return document.querySelector(".poem-line:not(.writing)").clientHeight;
+    return Math.floor(document.querySelector(".poem-line:not(.writing)").clientHeight) + 1;
   }
 
   canPageSupportNewColumn(column) {
