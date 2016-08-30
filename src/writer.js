@@ -31,7 +31,7 @@ class Writer {
   createContainer(lineNum) {
     let d = document.createElement("div");
     d.id = this.lineId(lineNum);
-    d.className = "poem-line";
+    d.className = "poem-line writing";
     document.body.insertBefore(d, this.placeholder());
   }
 
@@ -44,9 +44,13 @@ class Writer {
   }
 
   typeWriteLine(line, lineNum) {
+    var self = this;
     let tw = new Typewriter(this.lineId(lineNum, true), { text: line, interval: 20 });
     this.scrollToNewLine();
-    return new Promise(resolve => tw.type(() => resolve()));
+    return new Promise(resolve => tw.type(() => {
+      document.querySelector(self.lineId(lineNum, true)).className = "poem-line";
+      resolve();
+    }));
   }
 
   lineId(lineNum, selector=false) {

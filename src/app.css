@@ -8,7 +8,20 @@ body {
   font-weight: 500;
   line-height: 1.1rem;
   margin: 0;
-  padding: 1rem;
+  padding: 1rem 0 1rem 0;
 }
 
 #placeholder { height: 1rem; }
+
+.poem-line {
+  display: inline-block;
+  padding-right: 3rem;
+}
+
+.poem-line.writing::after {
+  content: " ";
+  display: inline-block;
+  height: .9rem;
+  width: .5rem;
+  background: solid white;
+}
