@@ -18,7 +18,7 @@ window.addEventListener("load", function() {
             return w.writeLines();
           }
         ).then(
-          () => Writer.clearLines()
+          () => Writer.clearLines(8000)
         );
       }, Promise.resolve())
   ).catch(
