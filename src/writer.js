@@ -45,7 +45,7 @@ class Writer {
 
   typeWriteLine(line, lineNum) {
     var self = this;
-    let tw = new Typewriter(this.lineId(lineNum, true), { text: line, interval: 20 });
+    let tw = new Typewriter(this.lineId(lineNum, true), { text: line, interval: 15 });
     this.scrollToNewLine();
     return new Promise(resolve => tw.type(() => {
       document.querySelector(self.lineId(lineNum, true)).className = "poem-line";
