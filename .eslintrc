@@ -14,7 +14,6 @@
     no-lone-blocks: 2
     no-lonely-if: 2
     no-eval: 2
-    no-magic-numbers: 1
     no-mixed-spaces-and-tabs: 2
     no-multi-spaces: 2
     no-multiple-empty-lines: [2, {max: 2}]
@@ -26,3 +25,5 @@
     semi: [2, "always"]
     space-in-parens: [2, "never"]
     strict: [2, "global"]
+  parserOptions:
+    sourceType: module

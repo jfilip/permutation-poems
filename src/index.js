@@ -15,7 +15,7 @@ window.addEventListener("load", function() {
           () => {
             let p = new Permutations({ line: poem });
             let w = new Writer({ lines: p.genPermutations() });
-            return w.writeLines()
+            return w.writeLines();
           }
         ).then(
           () => Writer.clearLines()

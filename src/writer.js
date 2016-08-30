@@ -1,5 +1,3 @@
-"use strict";
-
 var Typewriter = require("../node_modules/typewriter.js/src/typewriter");
 
 class Writer {

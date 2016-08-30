@@ -1,5 +1,3 @@
-"use strict";
-
 class PoemData {
   static get DATA_FILE() {
     return (window.location.pathname || "/") + "data.json";

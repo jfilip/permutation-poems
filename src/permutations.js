@@ -1,5 +1,3 @@
-"use strict";
-
 var itertools = require("itertools");
 
 class Permutations {
