@@ -11,14 +11,15 @@ window.addEventListener("load", function() {
   PoemData.load().then(
     data => data.poems.reduce(
       function(sequence, poem) {
+        let w;
         return sequence.then(
           () => {
             let p = new Permutations({ line: poem });
-            let w = new Writer({ lines: p.genPermutations() });
+            w = new Writer({ lines: p.genPermutations() });
             return w.writeLines();
           }
         ).then(
-          () => Writer.clearLines(8000)
+          () => w.clearAll()
         );
       }, Promise.resolve())
   ).catch(

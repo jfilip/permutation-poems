@@ -6,15 +6,20 @@ class Writer {
     this.lineLength = null;
   }
 
-  static clearLines(delay=0) {
+  clearAll() {
+    var self = this;
     return new Promise(
-      resolve => setTimeout(function() {
-        Array.prototype.forEach.call(
-          document.querySelectorAll(".column"),
-          l => document.body.removeChild(l)
-        );
+      resolve => setTimeout(() => {
+        self.clearLines();
         resolve();
-      }, delay)
+      }, 8000)
+    );
+  }
+
+  clearLines() {
+    Array.prototype.forEach.call(
+      document.querySelectorAll(".column"),
+      l => document.body.removeChild(l)
     );
   }
 
@@ -38,10 +43,7 @@ class Writer {
     let currentColumn = columns[columns.length - 1];
     if (this.isColumnMaxHeight(currentColumn)) {
       if (!this.canPageSupportNewColumn(currentColumn)) {
-        Array.prototype.forEach.call(
-          document.querySelectorAll(".column"),
-          l => document.body.removeChild(l)
-        );
+        this.clearLines();
       }
       return this.newColumn();
     }
