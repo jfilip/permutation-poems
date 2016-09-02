@@ -19,8 +19,12 @@ body {
 }
 
 .poem-line {
+  border: none;
   display: inline-block;
+  margin: 0;
+  overflow: hidden;
   padding-right: 50px;
+  white-space: nowrap;
 }
 
 .poem-line.writing::after {
